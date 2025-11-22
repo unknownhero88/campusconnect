@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="rv_imgs" type="id" />
-    <item name="rv_imgs" type="id" />
+
     <item name="rv_img" type="id" />
     <item name="recyclerView" type="id" />
 </resources>

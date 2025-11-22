@@ -1,23 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/nav_home"
-
+        android:icon="@drawable/home"
         android:title="Home"/>
 
     <item android:id="@+id/nav_notice"
-
+        android:icon="@drawable/board"
         android:title="Notice"/>
 
     <item android:id="@+id/nav_lost_found"
-
+        android:icon="@drawable/lost_and_found"
         android:title="Lost &amp; Found"/>
 
     <item android:id="@+id/nav_study"
-
+        android:icon="@drawable/studym"
         android:title="Study"/>
 
     <item android:id="@+id/nav_community"
-
+        android:icon="@drawable/community"
         android:title="Community"/>
 
 </menu>

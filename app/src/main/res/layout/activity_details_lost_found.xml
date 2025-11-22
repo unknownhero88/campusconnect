@@ -30,14 +30,11 @@
 
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:id="@+id/rvImg"
-        android:padding="10dp" />
-
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/rvImg"
+            android:padding="10dp" />
 
         <TextView
             android:layout_width="match_parent"
