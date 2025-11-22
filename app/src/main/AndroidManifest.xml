@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".details_lost_found"
+            android:exported="false" />
+        <activity
             android:name=".Home.Home"
             android:exported="false" />
         <activity
