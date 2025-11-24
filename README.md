@@ -15,6 +15,7 @@ An Android application for college students to connect, share information, and s
 *   **Backend:** Supabase (for database, real-time features, and authentication)
 *   **Networking:** Retrofit
 *   **JSON Parsing:** Gson
+*   **Dependency Management:** Gradle Version Catalogs
 
 ## Setup
 
@@ -42,7 +43,7 @@ An Android application for college students to connect, share information, and s
 │   │   │   │           └── myapplication/
 │   │   │   │               ├── Attendance/
 │   │   │   │               ├── Community/
-│   │   │   │               ├── DigitalNoticeBoard/
+│ │ │ │ │ ├── DigitalNoticeBoard/
 │   │   │   │               ├── Home/
 │   │   │   │               ├── LostANDFound/
 │   │   │   │               ├── StudyMaterial/
