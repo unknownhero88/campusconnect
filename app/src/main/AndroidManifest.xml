@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".full_post_community"
+            android:name=".Community.addPost_community"
+            android:exported="false" />
+        <activity
+            android:name=".Community.full_post_community"
             android:exported="false" />
         <activity
             android:name=".DigitalNoticeBoard.details_lost_found"

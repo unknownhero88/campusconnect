@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".full_post_community"
+    tools:context=".Community.full_post_community"
     android:layout_marginTop="44dp"
     android:layout_marginBottom="122dp"
     android:layout_marginEnd="13dp"
