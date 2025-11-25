@@ -13,6 +13,8 @@ activity = "1.12.0"
 constraintlayout = "2.2.1"
 supabaseKt = "3.2.6"
 recyclerview = "1.4.0"
+navigationFragment = "2.9.6"
+navigationUi = "2.9.6"
 
 [libraries]
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
@@ -30,6 +32,8 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 realtime-kt = { module = "io.github.jan-tennert.supabase:realtime-kt", version.ref = "supabaseKt" }
 supabase-kt = { module = "io.github.jan-tennert.supabase:supabase-kt", version.ref = "supabaseKt" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

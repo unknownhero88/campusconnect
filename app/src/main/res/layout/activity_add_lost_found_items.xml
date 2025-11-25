@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add_lost_found_items">
+    tools:context=".LostANDFound.add_lost_found_items">
 
     <RelativeLayout
         android:id="@+id/title"
