@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".add_lost_found_items"
+            android:exported="false" />
+        <activity
             android:name=".Community.addPost_community"
             android:exported="false" />
         <activity
