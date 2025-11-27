@@ -50,4 +50,5 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.coroutines.android)
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
 }

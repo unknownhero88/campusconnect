@@ -52,6 +52,10 @@ public class Home extends AppCompatActivity {
             if (fragment instanceof LostFoundFragment) {
                 ((LostFoundFragment) fragment).onFabClick();
             }
+            if(fragment instanceof CommunityFragment)
+            {
+                ((CommunityFragment) fragment).onfabClick();
+            }
         });
     }
 
