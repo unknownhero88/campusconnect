@@ -34,15 +34,17 @@ public class Home extends AppCompatActivity {
                 fab.setVisibility(View.VISIBLE);
                 } else if (itemId == R.id.nav_notice) {
                 fragment = new NoticeFragment();
+                fab.setVisibility(View.GONE);
                 } else if (itemId == R.id.nav_home) {
                 fragment = new HomeFragment();
+                fab.setVisibility(View.GONE);
                 } else if (itemId == R.id.nav_study) {
                 fragment = new StudyFragment();
+                fab.setVisibility(View.VISIBLE);
                 } else if (itemId == R.id.nav_community) {
                 fragment = new CommunityFragment();
+                fab.setVisibility(View.VISIBLE);
                 }
-            if (fragment != null) {
-            }
             return loadFragment(fragment);
         });
         fab.setOnClickListener(v -> {

@@ -24,15 +24,18 @@ public class LostFoundFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        recyclerView = recyclerView.findViewById(R.id.rv_lost_found);
+        View rootView = inflater.inflate(R.layout.fragment_lost_found, container, false);
+        recyclerView = rootView.findViewById(R.id.rv_lost_found);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        list.add(new rv_model_lost_found("Lost","Mobile","electonic","11-12-2025","7880103732","https://i.ibb.co/zTCTHnsW/9eb6b3cc068b.jpg"));
         rv_adapter = new rv_adapter_lost_found(list,getActivity());
         recyclerView.setAdapter(rv_adapter);
 
 
 
-        return inflater.inflate(R.layout.fragment_lost_found, container, false);
+        return rootView;
     }
     public void onFabClick() {
         startActivity(new Intent(getActivity(), add_lost_found_items.class));
