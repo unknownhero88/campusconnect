@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:gravity="center|top"
-            >
+            android:gravity="center|top">
 
             <TextView
                 android:layout_width="match_parent"
@@ -36,20 +35,13 @@
                 android:background="@color/black" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_community"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_below="@+id/linearLayout"
-            android:layout_marginBottom="112dp"
-            android:gravity="center|top"
-            android:orientation="vertical">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_below="@id/linearLayout"
+            android:padding="10dp" />
 
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
     </RelativeLayout>
 
 </FrameLayout>

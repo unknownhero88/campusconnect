@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 
 import java.util.List;
@@ -33,7 +34,21 @@ public class rv_adapter_community extends RecyclerView.Adapter<rv_adapter_commun
 
     @Override
     public void onBindViewHolder(@NonNull rv_adapter_community.ViewHolder holder, int position) {
-
+        rv_model_community model = list.get(position);
+        holder.desc.setText(model.getDesc());
+        holder.date.setText(model.getDate());
+        holder.rating.setText(String.valueOf(model.getRating()));
+        if(model.getImg()!=null)
+        {
+        Glide.with(holder.itemView.getContext())
+                .load(model.getImg())
+                .placeholder(R.drawable.ic_launcher_foreground)
+                .error(R.drawable.ic_launcher_foreground);
+        }
+        else
+        {
+            holder.img.setImageResource(R.drawable.ic_launcher_foreground);
+        }
     }
 
     @Override
