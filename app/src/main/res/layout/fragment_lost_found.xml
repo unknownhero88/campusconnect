@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:gravity="center|top"
-            >
+            android:gravity="center">
 
             <TextView
                 android:layout_width="match_parent"
@@ -32,7 +32,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1.5dp"
+                android:layout_height="1dp"
                 android:background="@color/black" />
 
             <LinearLayout
@@ -61,26 +61,17 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1.5dp"
+                android:layout_height="1dp"
                 android:background="@color/black" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_lost_found"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_below="@+id/linearLayout"
-            android:layout_marginBottom="112dp"
-            android:gravity="center|top"
-            android:orientation="vertical">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rv_lost_found"
-                >
+            android:layout_height="match_parent"
+            android:layout_below="@id/headerLayout"
+            android:padding="10dp"/>
 
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
     </RelativeLayout>
 
 </FrameLayout>
