@@ -5,11 +5,9 @@ import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
+import com.example.myapplication.supabaseSetup.ApiClient;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -60,7 +58,7 @@ public class DB_test extends AppCompatActivity {
         obj1.addProperty("name", "Updated Name");
         obj1.addProperty("email", "updated@gmail.com");
 
-        api.updateEmp(1, obj1).enqueue(new Callback<JsonElement>() {
+        api.updateEmp("eq."+1, obj1).enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 Log.d("SUPABASE", "Updated: " + response.body());
@@ -71,17 +69,7 @@ public class DB_test extends AppCompatActivity {
                 Log.e("SUPABASE", t.getMessage());
             }
         });
-        api.deleteEmp(1).enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.d("SUPABASE", "Deleted: " + response.body());
-            }
 
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-                Log.e("SUPABASE", t.getMessage());
-            }
-        });
 
     }
 }

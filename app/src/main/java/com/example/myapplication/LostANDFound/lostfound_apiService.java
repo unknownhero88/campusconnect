@@ -1,4 +1,4 @@
-package com.example.myapplication.testDB;
+package com.example.myapplication.LostANDFound;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -9,24 +9,24 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+public interface lostfound_apiService {
 
-public interface ApiService {
-
-    @POST("emp")
+    @POST("LostFound")
     Call<JsonElement> insertEmp(@Body JsonObject body);
 
     // READ
-    @GET("emp?select=*")
+    @GET("LostFound?select=*")
     Call<JsonElement> getEmp();
 
-    @PATCH("emp")
+    @PATCH("LostFound")
     Call<JsonElement> updateEmp(
             @Query("id") String idCondition,
             @Body JsonObject body
     );
 
-    @DELETE("emp")
+    @DELETE("LostFound")
     Call<JsonElement> deleteEmp(
             @Query("id") String idCondition
     );
+
 }

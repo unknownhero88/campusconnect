@@ -1,4 +1,4 @@
-package com.example.myapplication.testDB;
+package com.example.myapplication.supabaseSetup;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,12 +8,13 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import com.example.myapplication.BuildConfig;
+
 public class ApiClient {
 
-    private static final String API_KEY = "sb_publishable_NnwFwslu5UC3WDHg9si-Ng_DEg_1upE";
 
-    private static final String BASE_URL =
-            "https://njzjssodtktnscxcfchl.supabase.co/rest/v1/";
+    private static final String API_KEY = BuildConfig.SUPABASE_KEY;
+    private static final String BASE_URL = BuildConfig.SUPABASE_URL;
 
     public static Retrofit getClient() {
 
@@ -36,4 +37,3 @@ public class ApiClient {
                 .build();
     }
 }
-

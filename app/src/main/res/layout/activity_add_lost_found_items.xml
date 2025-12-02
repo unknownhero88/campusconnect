@@ -114,15 +114,31 @@
                 android:textStyle="bold"
                 android:layout_marginTop="15dp"/>
 
-            <TextClock
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text"
-                android:padding="12dp"
+                android:padding="5dp"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                android:format12Hour="dd MMM yyyy, hh:mm a"/>
-
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:hint="DD-MM-YYYY"
+                    android:textAlignment="center"
+                    android:id="@id/editDate"/>
+                <View
+                    android:layout_width="18dp"
+                    android:layout_height="0dp"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:hint="hh:mm"
+                    android:textAlignment="center"
+                    android:id="@id/editTime"/>
+            </LinearLayout>
             <ImageView
                 android:id="@+id/AddPostImageView"
                 android:layout_width="300dp"
@@ -154,10 +170,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:id="@+id/AddPostImageBtn"
+                >
 
                 <ImageButton
-                    android:id="@+id/btnAddImage"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="@null"
@@ -171,6 +188,7 @@
                     android:textSize="18sp"
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
+
 
             <Button
                 android:id="@+id/btnPost"
