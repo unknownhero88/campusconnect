@@ -1,6 +1,11 @@
 package com.example.myapplication.LostANDFound;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
@@ -16,8 +23,6 @@ import com.example.myapplication.supabaseSetup.ApiClient;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +36,8 @@ public class add_lost_found_items extends AppCompatActivity {
     LinearLayout AddPostImageBtn;
     Button btnPost;
 
+    private ActivityResultLauncher<Intent> imagePicker;
+    private Uri selectedImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,66 +54,82 @@ public class add_lost_found_items extends AppCompatActivity {
         AddPostImageBtn = findViewById(R.id.AddPostImageBtn);
         btnPost = findViewById(R.id.btnPost);
 
-
-        Character type[] = new Character[1];
-        final String[] desc = {""};
-        final String[] cat = {""};
-        final String[] date = {""};
-        final String[] time = {""};
-        final String[] dateTime = {""};
-        final String[] contact = {""};
+        final Character[] type = {null};
         final String[] image = {""};
 
-        btnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                desc[0] = editDescription.getText().toString();
-                cat[0] = AddPostSpinner.getSelectedItem().toString();
-                date[0] = editDate.getText().toString();
-                time[0] = editTime.getText().toString();
-                dateTime[0] = date[0] + " " + time[0];
-                contact[0] = editContact.getText().toString();
-                image[0] = "image";
-            }
-        });
+        imagePicker = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null) {
+                            selectedImageUri = data.getData();
 
-        toggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
-            @Override
-            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                if (isChecked) {
-                    if (checkedId == R.id.btnLost) {
-                        type[0] = 'L';
-                    } else if (checkedId == R.id.btnFound) {
-                        type[0] = 'F';
+                            try {
+                                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                                        getContentResolver(),
+                                        selectedImageUri
+                                );
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
+                });
+
+        AddPostImageBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            imagePicker.launch(intent);
+        });
+
+
+        toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (isChecked) {
+                if (checkedId == R.id.btnLost) type[0] = 'L';
+                else if (checkedId == R.id.btnFound) type[0] = 'F';
+            }
+        });
+
+        btnPost.setOnClickListener(view -> {
+
+            String desc = editDescription.getText().toString();
+            String cat = AddPostSpinner.getSelectedItem().toString();
+            String date = editDate.getText().toString();
+            String time = editTime.getText().toString();
+            String dateTime = date + " " + time;
+            String contact = editContact.getText().toString();
+
+            if (selectedImageUri != null) {
+                image[0] = selectedImageUri.toString();
+            } else {
+                image[0] = "no-image";
+            }
+
+            JsonObject obj = new JsonObject();
+            obj.addProperty("type", type[0]);
+            obj.addProperty("desc", desc);
+            obj.addProperty("cat", cat);
+            obj.addProperty("dateTime", dateTime);
+            obj.addProperty("contact", contact);
+            obj.addProperty("image", image[0]);
+            obj.addProperty("UID", 1);
+            obj.addProperty("status", "Pending");
+
+            lostfound_apiService api = ApiClient.getClient().create(lostfound_apiService.class);
+
+            api.insertEmp(obj).enqueue(new Callback<JsonElement>() {
+                @Override
+                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                    Log.d("SUPABASE", "Inserted: " + response.body());
                 }
-            }
+
+                @Override
+                public void onFailure(Call<JsonElement> call, Throwable t) {
+                    Log.e("SUPABASE", "Error: " + t.getMessage());
+                }
+            });
         });
-
-
-        lostfound_apiService api = ApiClient.getClient().create(lostfound_apiService.class);
-
-        JsonObject obj = new JsonObject();
-        obj.addProperty("type", type[0]);
-        obj.addProperty("desc", desc[0]);
-        obj.addProperty("cat", cat[0]);
-        obj.addProperty("dateTime", dateTime[0]);
-        obj.addProperty("contact", contact[0]);
-        obj.addProperty("image", image[0]);
-        obj.addProperty("UID", 1);
-        obj.addProperty("status", "Pending");
-
-        api.insertEmp(obj).enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.d("SUPABASE", "Inserted: " + response.body());
-            }
-
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-                Log.e("SUPABASE", t.getMessage());
-            }
-        });
-
     }
 }
