@@ -169,13 +169,14 @@ public class add_lost_found_items extends AppCompatActivity {
 
             JsonObject obj = new JsonObject();
             obj.addProperty("type", type[0]);
-            obj.addProperty("desc", desc);
+            obj.addProperty("Desc", desc);
             obj.addProperty("cat", cat);
-            obj.addProperty("dateTime", dateTime);
-            obj.addProperty("contact", contact);
-            obj.addProperty("image", image[0]);
+            obj.addProperty("datetime", dateTime);
+            obj.addProperty("contact info", contact);
+            obj.addProperty("img", image[0]);
             obj.addProperty("UID", 1);
             obj.addProperty("status", "Pending");
+
 
             lostfound_apiService api = ApiClient.getClient().create(lostfound_apiService.class);
 
@@ -183,6 +184,10 @@ public class add_lost_found_items extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                     Log.d("SUPABASE", "Inserted: " + response.body());
+                    Log.d("SUPABASE", "Code: " + response.code());
+                    Log.d("SUPABASE", "Raw: " + response.raw());
+                    Log.d("SUPABASE", "Error: " + response.errorBody());
+
                 }
 
                 @Override
