@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 import com.example.myapplication.supabaseSetup.ApiClient;
+import com.example.myapplication.supabaseSetup.storageClient;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -69,6 +70,7 @@ public class add_lost_found_items extends AppCompatActivity {
         AddPostImageView = findViewById(R.id.AddPostImageView);
         imgName = findViewById(R.id.imgName);
 
+        storageClient storage = new storageClient(this);
 
         final Character[] type = {null};
         final String[] image = {""};
@@ -130,11 +132,26 @@ public class add_lost_found_items extends AppCompatActivity {
                             imgName.setText(selectedImageUri.getLastPathSegment());
                             imgName.setVisibility(View.VISIBLE);
                             AddPostImageBtn.setBackgroundResource(R.drawable.edit_text);
+
+                            storage.uploadImage(selectedImageUri, "Lost&Found",new storageClient.UploadCallback() {
+                                @Override
+                                public void onSuccess(String publicUrl) {
+                                    Log.d("SUPABASE BUCKET", "Image Uploaded: " + publicUrl);
+                                    image[0] = publicUrl;
+                                }
+
+                                @Override
+                                public void onError(String error) {
+                                    Log.e("SUPABASE BUCKET", "Image Upload Error: " + error);
+                                    image[0] = "no-image";
+                                }
+                            });
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                                         getContentResolver(),
                                         selectedImageUri
                                 );
+
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -161,11 +178,6 @@ public class add_lost_found_items extends AppCompatActivity {
             String dateTime = date + " " + time;
             String contact = editContact.getText().toString();
 
-            if (selectedImageUri != null) {
-                image[0] = selectedImageUri.toString();
-            } else {
-                image[0] = "no-image";
-            }
 
             JsonObject obj = new JsonObject();
             obj.addProperty("type", type[0]);

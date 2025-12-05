@@ -51,7 +51,6 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
 
-    // Exclude old annotations from room.compiler
     implementation(libs.room.compiler) {
         exclude(group = "com.intellij", module = "annotations")
     }
@@ -72,9 +71,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 }
-
-// Force a single version of annotations to prevent duplicate class errors
 configurations.all {
     resolutionStrategy {
         force("org.jetbrains:annotations:23.0.0")
