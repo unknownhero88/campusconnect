@@ -77,8 +77,13 @@ public class add_lost_found_items extends AppCompatActivity {
         toggleGroup.setSingleSelection(true);
         toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
             if (isChecked) {
-                if (checkedId == R.id.btnLost) type[0] = 'L';
-                else if (checkedId == R.id.btnFound) type[0] = 'F';
+                if (checkedId == R.id.btnLost) {
+                    type[0] = 'L';
+                }
+                else if (checkedId == R.id.btnFound)
+                {
+                    type[0] = 'F';
+                }
             }
         });
 
@@ -166,7 +171,7 @@ public class add_lost_found_items extends AppCompatActivity {
             imagePicker.launch(intent);
         });
 
-      //for git
+
 
 
         btnPost.setOnClickListener(view -> {
