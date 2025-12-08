@@ -138,7 +138,7 @@ public class add_lost_found_items extends AppCompatActivity {
                             imgName.setVisibility(View.VISIBLE);
                             AddPostImageBtn.setBackgroundResource(R.drawable.edit_text);
 
-                            storage.uploadImage(selectedImageUri, "Lost&Found",new storageClient.UploadCallback() {
+                            storage.uploadImage(selectedImageUri, "LostANDFoundImages", new storageClient.UploadCallback() {
                                 @Override
                                 public void onSuccess(String publicUrl) {
                                     Log.d("SUPABASE BUCKET", "Image Uploaded: " + publicUrl);
@@ -151,6 +151,7 @@ public class add_lost_found_items extends AppCompatActivity {
                                     image[0] = "no-image";
                                 }
                             });
+
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                                         getContentResolver(),

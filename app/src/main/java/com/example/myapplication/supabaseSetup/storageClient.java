@@ -2,7 +2,10 @@ package com.example.myapplication.supabaseSetup;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
+
+import com.example.myapplication.BuildConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,8 +20,8 @@ import okhttp3.Response;
 
 public class storageClient {
 
-    private static final String SUPABASE_URL = "https://njzjssodtktnscxcfchl.supabase.co";
-    private static final String API_KEY = "YOUR_SUPABASE_API_KEY";
+    private static final String SUPABASE_URL = BuildConfig.SUPABASE_URL;
+    private static final String API_KEY = BuildConfig.SUPABASE_KEY ;
 
     private final Context context;
 
@@ -88,13 +91,22 @@ public class storageClient {
 
                 } else {
                     Log.e("SUPABASE", "Upload failed: " + response.message());
+                    Log.e("SUPABASE", "Response Code: " + response.code());
+                    Log.e("SUPABASE", "Response Body: " + response.body().string());
+                    Log.e("SUPABASE", "Response Headers: " + response.headers());
+                    Log.e("SUPABASE", "Response Protocol: " + response.protocol());
+                    Log.e("SUPABASE", "Response Message: " + response.message());
+                    Log.e("SUPABASE", "Response Request: " + response.request());
+                    Log.e("SUPABASE", "Response IsSuccessful: " + response.isSuccessful());
+
                     callback.onError("Supabase Upload Failed: " + response.message());
                 }
-
+                response.close();
             } catch (Exception e) {
                 e.printStackTrace();
                 callback.onError(e.getMessage());
             }
+
         }).start();
     }
 
