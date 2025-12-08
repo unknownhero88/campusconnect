@@ -4,6 +4,8 @@ plugins {
 
 val SUPABASE_URL: String by project
 val SUPABASE_KEY: String by project
+val SUPABASE_BUCKET_URL: String by project
+
 
 android {
     namespace = "com.example.myapplication"
@@ -24,6 +26,7 @@ android {
 
         buildConfigField("String", "SUPABASE_URL", "\"$SUPABASE_URL\"")
         buildConfigField("String", "SUPABASE_KEY", "\"$SUPABASE_KEY\"")
+        buildConfigField("String", "SUPABASE_BUCKET_URL", "\"$SUPABASE_BUCKET_URL\"")
     }
 
     buildTypes {

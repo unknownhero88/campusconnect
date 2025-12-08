@@ -2,7 +2,6 @@ package com.example.myapplication.supabaseSetup;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 
 import com.example.myapplication.BuildConfig;
@@ -20,8 +19,8 @@ import okhttp3.Response;
 
 public class storageClient {
 
-    private static final String SUPABASE_URL = BuildConfig.SUPABASE_URL;
-    private static final String API_KEY = BuildConfig.SUPABASE_KEY ;
+    private static final String SUPABASE_BUCKET_URL = BuildConfig.SUPABASE_BUCKET_URL;
+    private static final String API_KEY = BuildConfig.SUPABASE_KEY;
 
     private final Context context;
 
@@ -48,12 +47,18 @@ public class storageClient {
 
         new Thread(() -> {
             try {
-
                 byte[] imageBytes = getBytesFromUri(imageUri);
 
-                String encodedBucket = URLEncoder.encode(bucketName, "UTF-8");
-
                 String fileName = "IMG_" + System.currentTimeMillis() + ".jpg";
+                String encodedFile = URLEncoder.encode(fileName, "UTF-8");
+
+                Log.d("SUPABASE FileName", "File Name: " + fileName);
+
+                String uploadUrl = SUPABASE_BUCKET_URL +
+                        "/object/" +
+                        bucketName + "/" +
+                        encodedFile;
+
 
                 OkHttpClient client = new OkHttpClient();
 
@@ -61,10 +66,6 @@ public class storageClient {
                         imageBytes,
                         MediaType.parse("image/jpeg")
                 );
-
-                // Upload URL
-                String uploadUrl = SUPABASE_URL + "/storage/v1/object/" +
-                        encodedBucket + "/" + fileName;
 
                 Request request = new Request.Builder()
                         .url(uploadUrl)
@@ -78,33 +79,31 @@ public class storageClient {
 
                 if (response.isSuccessful()) {
 
-                    // Public URL
-                    String publicUrl = SUPABASE_URL +
-                            "/storage/v1/object/public/" +
-                            encodedBucket + "/" +
-                            fileName;
+                    String publicUrl = SUPABASE_BUCKET_URL +
+                            "/object/public/" +
+                            bucketName + "/" +
+                            encodedFile;
 
-                    Log.d("SUPABASE", "File Uploaded: " + fileName);
-                    Log.d("SUPABASE", "URL: " + publicUrl);
+
+                    Log.d("SUPABASE", "Upload Successful: " + fileName);
+                    Log.d("SUPABASE", "Public URL: " + publicUrl);
 
                     callback.onSuccess(publicUrl);
 
                 } else {
-                    Log.e("SUPABASE", "Upload failed: " + response.message());
-                    Log.e("SUPABASE", "Response Code: " + response.code());
-                    Log.e("SUPABASE", "Response Body: " + response.body().string());
-                    Log.e("SUPABASE", "Response Headers: " + response.headers());
-                    Log.e("SUPABASE", "Response Protocol: " + response.protocol());
-                    Log.e("SUPABASE", "Response Message: " + response.message());
-                    Log.e("SUPABASE", "Response Request: " + response.request());
-                    Log.e("SUPABASE", "Response IsSuccessful: " + response.isSuccessful());
 
-                    callback.onError("Supabase Upload Failed: " + response.message());
+                    Log.e("SUPABASE", "Upload Failed Code: " + response.code());
+                    Log.e("SUPABASE", "Body: " + response.body().string());
+                    Log.e("SUPABASE", "URL Used: " + uploadUrl);
+
+                    callback.onError("Upload failed: Code " + response.code());
                 }
+
                 response.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
-                callback.onError(e.getMessage());
+                callback.onError("Error: " + e.getMessage());
             }
 
         }).start();
