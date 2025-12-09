@@ -11,11 +11,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Home.Home;
+import com.example.myapplication.authActivity.Login;
+import com.example.myapplication.authActivity.signup;
 import com.example.myapplication.testDB.DB_test;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button clickme, db_test;
+    Button clickme, db_test, signup, login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,15 @@ public class MainActivity extends AppCompatActivity {
         db_test.setOnClickListener(view -> {
             startActivity(new Intent( MainActivity.this, DB_test.class));
         });
+        signup=findViewById(R.id.signup);
+        signup.setOnClickListener(view -> {
+            startActivity(new Intent( MainActivity.this, signup.class));
+        });
+        login=findViewById(R.id.login);
+        login.setOnClickListener(view -> {
+            startActivity(new Intent( MainActivity.this, Login.class));
+        });
+
 
 
     }

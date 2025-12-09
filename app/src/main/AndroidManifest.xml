@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,6 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".authActivity.signup"
+            android:exported="false" />
+        <activity
+            android:name=".authActivity.Login"
+            android:exported="false" />
         <activity
             android:name=".testDB.DB_test"
             android:exported="false" />
