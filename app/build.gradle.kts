@@ -5,6 +5,8 @@ plugins {
 val SUPABASE_URL: String by project
 val SUPABASE_KEY: String by project
 val SUPABASE_BUCKET_URL: String by project
+val SUPABASE_AUTH_URL: String by project
+
 
 
 android {
@@ -27,6 +29,7 @@ android {
         buildConfigField("String", "SUPABASE_URL", "\"$SUPABASE_URL\"")
         buildConfigField("String", "SUPABASE_KEY", "\"$SUPABASE_KEY\"")
         buildConfigField("String", "SUPABASE_BUCKET_URL", "\"$SUPABASE_BUCKET_URL\"")
+        buildConfigField("String", "SUPABASE_AUTH_URL", "\"$SUPABASE_AUTH_URL\"")
     }
 
     buildTypes {
@@ -75,6 +78,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 }
 configurations.all {
     resolutionStrategy {

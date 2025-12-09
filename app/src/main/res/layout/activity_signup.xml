@@ -52,6 +52,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/edit_text"
                 android:id="@+id/email"/>
             <TextView
@@ -69,6 +70,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:inputType="textVisiblePassword"
                 android:background="@drawable/edit_text"
                 android:id="@+id/pwd"/>
             <TextView
@@ -86,13 +88,15 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:inputType="textPassword"
                 android:background="@drawable/edit_text"
                 android:id="@+id/re_pwd"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
-                android:text="Sign Up"/>
+                android:text="Sign Up"
+                android:id="@+id/signup"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
