@@ -59,6 +59,8 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 else{
+                    Log.d("LOGIN_DATA", "Email: " + emailStr + " | Pass: " + passwordStr);
+
                     LoginEmailPassword(emailStr, passwordStr);
                 }
             }
@@ -76,9 +78,9 @@ public class Login extends AppCompatActivity {
                 MediaType.parse("application/json")
         );
         Request requset = new Request.Builder()
-                .url(SUPABASE_AUTH_URL + "/auth/v1/token?grant_type=password")
+                .url(SUPABASE_AUTH_URL + "/token?grant_type=password")
                 .addHeader("apikey", SUPABASE_KEY)
-                .addHeader("Authorization", "Bearer " + SUPABASE_KEY)
+                .addHeader("Content-type","application/json")
                 .post(body)
                 .build();
         client.newCall(requset).enqueue(new Callback() {
@@ -96,10 +98,16 @@ public class Login extends AppCompatActivity {
                 } else {
                     String error = response.body().string();
                     Log.e("SUPABASE AUTH", "Login failed: " + error);
+                    if(error.contains("Invalid login credentials"))
+                    {
+                        runOnUiThread(() ->
+                                Toast.makeText(Login.this, "Invalid Email or Password!", Toast.LENGTH_SHORT).show());
 
-                    runOnUiThread(() ->
-                            Toast.makeText(Login.this, "Login Failed: " + error, Toast.LENGTH_LONG).show()
-                    );
+                    }else {
+                        runOnUiThread(() ->
+                                Toast.makeText(Login.this, "Login Failed: " + error, Toast.LENGTH_LONG).show()
+                        );
+                    }
                 }
             }
 

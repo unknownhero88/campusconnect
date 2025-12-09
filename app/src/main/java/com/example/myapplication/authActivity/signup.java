@@ -30,7 +30,7 @@ import okhttp3.Response;
 
 public class signup extends AppCompatActivity {
 
-    EditText email, pwd, re_pwd;
+    EditText email, pwd, re_pwd,name;
     Button signup;
 
     @Override
@@ -42,6 +42,7 @@ public class signup extends AppCompatActivity {
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
         re_pwd = findViewById(R.id.re_pwd);
+        name=findViewById(R.id.name);
         signup = findViewById(R.id.signup);
 
         signup.setOnClickListener(v -> {
@@ -49,6 +50,8 @@ public class signup extends AppCompatActivity {
             String emailStr = email.getText().toString().trim();
             String passwordStr = pwd.getText().toString().trim();
             String rePasswordStr = re_pwd.getText().toString().trim();
+            String nameStr = name.getText().toString().trim();
+
 
             if (!passwordStr.equals(rePasswordStr)) {
                 Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
@@ -59,18 +62,24 @@ public class signup extends AppCompatActivity {
                 Toast.makeText(this, "Email and Password cannot be empty!", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (nameStr.isEmpty()) {
+                Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            CreateAccount(emailStr, passwordStr);
+            CreateAccount(emailStr, passwordStr,nameStr);
         });
     }
 
-    private void CreateAccount(String email, String password) {
+    private void CreateAccount(String email, String password,String name) {
 
         OkHttpClient client = new OkHttpClient();
 
         JsonObject obj = new JsonObject();
         obj.addProperty("email", email);
         obj.addProperty("password", password);
+        obj.addProperty("name", name);
+
 
         RequestBody body = RequestBody.create(
                 obj.toString(),
