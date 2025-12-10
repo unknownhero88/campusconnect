@@ -105,7 +105,7 @@ public class signup extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
-                String res = response.body().string();  // <-- FIXED
+                String res = response.body().string();
                 if(response.isSuccessful()) {
                     runOnUiThread(() ->
                             Toast.makeText(signup.this, "Account Created Successfully!", Toast.LENGTH_SHORT).show()

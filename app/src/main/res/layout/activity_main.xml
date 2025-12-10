@@ -48,6 +48,14 @@
             android:layout_centerHorizontal="true"
             layout="@layout/activity_db_test"
             android:id="@+id/login"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="login"
+            android:layout_below="@id/signup"
+            android:layout_centerHorizontal="true"
+            layout="@layout/activity_db_test"
+            android:id="@+id/logout"/>
     </LinearLayout>
 </RelativeLayout>
 
