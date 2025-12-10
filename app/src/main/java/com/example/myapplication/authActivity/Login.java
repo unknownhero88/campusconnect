@@ -23,6 +23,9 @@ import com.example.myapplication.Home.Home;
 import com.example.myapplication.R;
 import com.google.gson.JsonObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -101,11 +104,20 @@ public class Login extends AppCompatActivity {
                     String res = response.body().string();
 
                     Log.d("SUPABASE AUTH", "onResponse: " + res);
-
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(res);
+                        String accessToken = jsonObject.getString("access_token");
+                        String refreshToken = jsonObject.getString("refresh_token");
+                        SessionManager sessionManager = new SessionManager(Login.this);
+                        sessionManager.saveSession(accessToken, refreshToken);
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
                     runOnUiThread(() -> {
                         Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Login.this, Home.class));
                     });
+                    startActivity(new Intent(Login.this, Home.class));
                 } else {
                     String error = response.body().string();
                     Log.e("SUPABASE AUTH", "Login failed: " + error);

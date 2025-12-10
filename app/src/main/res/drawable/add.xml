@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="80dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Circle Border -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M12,2a10,10 0 1,0 0,20a10,10 0 1,0 0,-20z"/>
+
+    <!-- Plus Sign (cutout using even-odd rule) -->
+    <path
+        android:fillColor="@color/material_dynamic_tertiary70"
+        android:fillType="evenOdd"
+        android:pathData="M13,11h5v2h-5v5h-2v-5H6v-2h5V6h2v5z"/>
+</vector>

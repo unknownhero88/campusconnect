@@ -2,8 +2,10 @@ package com.example.myapplication.Home;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,16 +14,26 @@ import com.example.myapplication.DigitalNoticeBoard.NoticeFragment;
 import com.example.myapplication.LostANDFound.LostFoundFragment;
 import com.example.myapplication.R;
 import com.example.myapplication.StudyMaterial.StudyFragment;
+import com.example.myapplication.authActivity.Login;
+import com.example.myapplication.authActivity.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNav;
-    com.google.android.material.floatingactionbutton.FloatingActionButton fab;
+    ImageButton fab;
 
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SessionManager sessionManager = new SessionManager(this);
+        if (!sessionManager.isLoggedIn()) {
+            startActivity(new Intent(this, Login.class));
+            finish();
+        }
+
         setContentView(R.layout.activity_home);
         bottomNav = findViewById(R.id.bottomNav);
         fab = findViewById(R.id.fab);
