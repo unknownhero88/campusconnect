@@ -5,19 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradient_bg"
     tools:context=".authActivity.signup">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_centerInParent="true"
         android:gravity="center"
         android:layout_marginTop="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/edit_text"
+        android:background="@drawable/border_30dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
                 android:textStyle="bold"
-                android:textColor="#339888"
+                android:textColor="@color/material_dynamic_tertiary20"
                 android:layout_gravity="center"
                 />
 
@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textSize="18dp"
+                android:textColor="@color/material_dynamic_tertiary20"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
@@ -59,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Email"
                 android:textSize="18dp"
+                android:textColor="@color/material_dynamic_tertiary20"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
@@ -75,8 +77,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="password"
+                android:text="Password"
                 android:textSize="18dp"
+                android:textColor="@color/material_dynamic_tertiary20"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
@@ -95,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="Re-password"
                 android:textSize="18dp"
+                android:textColor="@color/material_dynamic_tertiary20"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="16dp"
@@ -113,7 +117,29 @@
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
                 android:text="Sign Up"
-                android:id="@+id/signup"/>
+                android:id="@+id/signup"
+                android:backgroundTint="@color/material_dynamic_tertiary20"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="16dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I've an Account "
+                    android:textStyle="italic"
+                    android:textSize="18dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login.."
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:id="@+id/login"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

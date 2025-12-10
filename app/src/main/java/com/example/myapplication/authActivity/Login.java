@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -36,6 +37,8 @@ public class Login extends AppCompatActivity {
     
     EditText email, pwd;
     Button login;
+    TextView signup;
+
 
 
     @Override
@@ -46,7 +49,7 @@ public class Login extends AppCompatActivity {
         
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
-
+        signup = findViewById(R.id.signup);
         login = findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +66,14 @@ public class Login extends AppCompatActivity {
 
                     LoginEmailPassword(emailStr, passwordStr);
                 }
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(login.getContext().getApplicationContext(),signup.class));
             }
         });
     }

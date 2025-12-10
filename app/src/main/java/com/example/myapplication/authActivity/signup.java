@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +33,8 @@ public class signup extends AppCompatActivity {
 
     EditText email, pwd, re_pwd,name;
     Button signup;
+    TextView login;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class signup extends AppCompatActivity {
         re_pwd = findViewById(R.id.re_pwd);
         name=findViewById(R.id.name);
         signup = findViewById(R.id.signup);
+        login = findViewById(R.id.login);
+
+
 
         signup.setOnClickListener(v -> {
 
@@ -68,6 +74,10 @@ public class signup extends AppCompatActivity {
             }
 
             CreateAccount(emailStr, passwordStr,nameStr);
+        });
+
+        login.setOnClickListener(v -> {
+            startActivity(new Intent(signup.this, Login.class));
         });
     }
 
