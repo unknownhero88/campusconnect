@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="deep_plum">#3A2B4A</color>
+    <color name="Pale_Purple">#BDA4D4</color>
+    <color name="dusty_lavender">#A589BB</color>
 </resources>
