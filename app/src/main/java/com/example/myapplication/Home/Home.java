@@ -21,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
     BottomNavigationView bottomNav;
-    ImageButton fab;
+    com.google.android.material.floatingactionbutton.FloatingActionButton fab;
 
     @SuppressLint("NonConstantResourceId")
     @Override
