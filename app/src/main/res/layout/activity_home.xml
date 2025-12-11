@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_nav_menu"
         android:layout_margin="10dp"
-        android:layout_gravity="center||bottom"
         android:background="@drawable/border_30dp"
         android:padding="10dp"/>
 

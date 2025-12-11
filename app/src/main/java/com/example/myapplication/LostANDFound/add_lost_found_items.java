@@ -28,6 +28,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+import com.example.myapplication.authActivity.Login;
+import com.example.myapplication.authActivity.SessionManager;
 import com.example.myapplication.supabaseSetup.ApiClient;
 import com.example.myapplication.supabaseSetup.storageClient;
 import com.google.android.material.button.MaterialButtonToggleGroup;
@@ -59,6 +61,14 @@ public class add_lost_found_items extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_lost_found_items);
 
+        SessionManager sessionManager = new SessionManager(this);
+
+        if(!sessionManager.isLoggedIn())
+        {
+            startActivity(new Intent(this, Login.class));
+            finish();
+        };
+
         toggleGroup = findViewById(R.id.toggleGroup);
         editDescription = findViewById(R.id.editDescription);
         editDate = findViewById(R.id.editDate);
@@ -70,6 +80,10 @@ public class add_lost_found_items extends AppCompatActivity {
         AddPostImageView = findViewById(R.id.AddPostImageView);
         imgName = findViewById(R.id.imgName);
 
+        String UID = getSharedPreferences("USER_DATA", MODE_PRIVATE)
+                .getString("UID", "");
+
+
         storageClient storage = new storageClient(this);
 
         final Character[] type = {null};
@@ -79,6 +93,7 @@ public class add_lost_found_items extends AppCompatActivity {
             if (isChecked) {
                 if (checkedId == R.id.btnLost) {
                     type[0] = 'L';
+
                 }
                 else if (checkedId == R.id.btnFound)
                 {
@@ -138,20 +153,6 @@ public class add_lost_found_items extends AppCompatActivity {
                             imgName.setVisibility(View.VISIBLE);
                             AddPostImageBtn.setBackgroundResource(R.drawable.edit_text);
 
-                            storage.uploadImage(selectedImageUri, "LostANDFoundImages", new storageClient.UploadCallback() {
-                                @Override
-                                public void onSuccess(String publicUrl) {
-                                    Log.d("SUPABASE BUCKET", "Image Uploaded: " + publicUrl);
-                                    image[0] = publicUrl;
-                                }
-
-                                @Override
-                                public void onError(String error) {
-                                    Log.e("SUPABASE BUCKET", "Image Upload Error: " + error);
-                                    image[0] = "no-image";
-                                }
-                            });
-
                             try {
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(
                                         getContentResolver(),
@@ -184,35 +185,50 @@ public class add_lost_found_items extends AppCompatActivity {
             String dateTime = date + " " + time;
             String contact = editContact.getText().toString();
 
+            if (selectedImageUri == null) {
+                Log.e("SUPABASE", "Please select an image first");
+                return;
+            }
 
-            JsonObject obj = new JsonObject();
-            obj.addProperty("type", type[0]);
-            obj.addProperty("Desc", desc);
-            obj.addProperty("cat", cat);
-            obj.addProperty("datetime", dateTime);
-            obj.addProperty("contact info", contact);
-            obj.addProperty("img", image[0]);
-            obj.addProperty("UID", 1);
-            obj.addProperty("status", "Pending");
-
-
-            lostfound_apiService api = ApiClient.getClient().create(lostfound_apiService.class);
-
-            api.insertEmp(obj).enqueue(new Callback<JsonElement>() {
+            // UPLOAD IMAGE FIRST
+            storage.uploadImage(selectedImageUri, "LostANDFoundImages", new storageClient.UploadCallback() {
                 @Override
-                public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                    Log.d("SUPABASE", "Inserted: " + response.body());
-                    Log.d("SUPABASE", "Code: " + response.code());
-                    Log.d("SUPABASE", "Raw: " + response.raw());
-                    Log.d("SUPABASE", "Error: " + response.errorBody());
+                public void onSuccess(String publicUrl) {
+
+                    Log.d("SUPABASE BUCKET", "Image Uploaded: " + publicUrl);
+
+                    JsonObject obj = new JsonObject();
+                    obj.addProperty("type", type[0]);
+                    obj.addProperty("Desc", desc);
+                    obj.addProperty("cat", cat);
+                    obj.addProperty("datetime", dateTime);
+                    obj.addProperty("contact info", contact);
+                    obj.addProperty("img", publicUrl);
+                    obj.addProperty("UID", UID);
+                    obj.addProperty("status", "Pending");
+
+                    lostfound_apiService api = ApiClient.getClient().create(lostfound_apiService.class);
+
+                    api.insertEmp(obj).enqueue(new Callback<JsonElement>() {
+                        @Override
+                        public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+                            Log.d("SUPABASE", "Inserted: " + response.body());
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonElement> call, Throwable t) {
+                            Log.e("SUPABASE", "Insert Error: " + t.getMessage());
+                        }
+                    });
 
                 }
 
                 @Override
-                public void onFailure(Call<JsonElement> call, Throwable t) {
-                    Log.e("SUPABASE", "Error: " + t.getMessage());
+                public void onError(String error) {
+                    Log.e("SUPABASE BUCKET", "Image Upload Error: " + error);
                 }
             });
         });
+
     }
 }

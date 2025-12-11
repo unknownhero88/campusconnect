@@ -111,6 +111,14 @@ public class Login extends AppCompatActivity {
                         String refreshToken = jsonObject.getString("refresh_token");
                         SessionManager sessionManager = new SessionManager(Login.this);
                         sessionManager.saveSession(accessToken, refreshToken);
+                        String userId = jsonObject.getJSONObject("user").getString("id");
+
+                        getSharedPreferences("USER_DATA", MODE_PRIVATE)
+                                .edit()
+                                .putString("UID", userId)
+                                .apply();
+
+                        Log.d("AUTH_UID", "User ID Saved: " + userId);
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
                     }

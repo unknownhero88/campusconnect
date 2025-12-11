@@ -88,7 +88,7 @@ public class signup extends AppCompatActivity {
         JsonObject obj = new JsonObject();
         obj.addProperty("email", email);
         obj.addProperty("password", password);
-        obj.addProperty("name", name);
+        obj.addProperty("Display name", name);
 
 
         RequestBody body = RequestBody.create(
