@@ -50,8 +50,6 @@ public class addPost_community extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_post_community);
 
         SessionManager sessionManager = new SessionManager(this);
 
@@ -60,6 +58,11 @@ public class addPost_community extends AppCompatActivity {
             startActivity(new Intent(this, Login.class));
             finish();
         };
+
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_add_post_community);
+
+
 
         AddPostEditText = findViewById(R.id.AddPostEditText);
         AddPostImageBtn = findViewById(R.id.AddPostImageButton);
