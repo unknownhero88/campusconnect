@@ -37,7 +37,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Login extends AppCompatActivity {
-    
+
     EditText email, pwd;
     Button login;
     TextView signup;
@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        
+
         email = findViewById(R.id.email);
         pwd = findViewById(R.id.pwd);
         signup = findViewById(R.id.signup);
@@ -124,8 +124,10 @@ public class Login extends AppCompatActivity {
                     }
                     runOnUiThread(() -> {
                         Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Login.this, Home.class));
+                        finish();
                     });
-                    startActivity(new Intent(Login.this, Home.class));
+
                 } else {
                     String error = response.body().string();
                     Log.e("SUPABASE AUTH", "Login failed: " + error);

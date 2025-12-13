@@ -58,8 +58,7 @@ public class add_lost_found_items extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_add_lost_found_items);
+
 
         SessionManager sessionManager = new SessionManager(this);
 
@@ -67,7 +66,11 @@ public class add_lost_found_items extends AppCompatActivity {
         {
             startActivity(new Intent(this, Login.class));
             finish();
-        };
+            return;
+        }
+
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_add_lost_found_items);
 
         toggleGroup = findViewById(R.id.toggleGroup);
         editDescription = findViewById(R.id.editDescription);
@@ -189,6 +192,31 @@ public class add_lost_found_items extends AppCompatActivity {
                 Log.e("SUPABASE", "Please select an image first");
                 return;
             }
+            if (desc.isEmpty()) {
+                Log.e("SUPABASE", "Description cannot be empty");
+                return;
+            }
+            if (cat.equals("Select Category")) {
+                Log.e("SUPABASE", "Category cannot be empty");
+                return;
+            }
+            if (date.isEmpty()) {
+                Log.e("SUPABASE", "Date cannot be empty");
+                return;
+            }
+            if (time.isEmpty()) {
+                Log.e("SUPABASE", "Time cannot be empty");
+                return;
+            }
+            if (contact.isEmpty()) {
+                Log.e("SUPABASE", "Contact cannot be empty");
+                return;
+            }
+            if (type[0] == null) {
+                Log.e("SUPABASE", "Type cannot be empty");
+                return;
+            }
+            Log.d("SUPABASE", "Type: " + type[0]);
 
             // UPLOAD IMAGE FIRST
             storage.uploadImage(selectedImageUri, "LostANDFoundImages", new storageClient.UploadCallback() {
@@ -213,6 +241,13 @@ public class add_lost_found_items extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                             Log.d("SUPABASE", "Inserted: " + response.body());
+                            Log.d("SUPABASE", "Inserted: " + response.errorBody());
+                            Log.d("SUPABASE", "Inserted: " + response.code());
+                            Log.d("SUPABASE", "Inserted: " + response.message());
+                            Log.d("SUPABASE", "Inserted: " + response.raw());
+                            Log.d("SUPABASE", "Inserted: " + response.isSuccessful());
+
+
                         }
 
                         @Override
