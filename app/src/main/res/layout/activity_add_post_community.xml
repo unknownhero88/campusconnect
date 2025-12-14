@@ -1,107 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Community.addPost_community"
-    android:layout_margin="14dp"
-    android:scrollbars="vertical"
-    android:scrollbarSize="5dp"
-    android:background="@color/white"
-    android:scrollbarStyle="outsideOverlay">
+    android:background="@drawable/gradient_bg"
+    tools:context=".Community.addPost_community">
 
-    <RelativeLayout
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/title">
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/header_glass"
+        android:background="@drawable/title_box_bg"
+        android:elevation="12dp"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community Post"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <!-- Content Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title"
+        android:padding="16dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center|top"
-            >
+            android:background="@drawable/white_card_glass"
+            android:padding="20dp"
+            android:elevation="8dp">
+
+            <!-- Post Content Title -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Community Post "
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:text="Post Content"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
-            <View
+            <!-- Post Input -->
+            <EditText
+                android:id="@+id/AddPostEditText"
                 android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="@color/black" />
+                android:layout_height="160dp"
+                android:layout_marginTop="12dp"
+                android:hint="Write something for the community..."
+                android:gravity="top"
+                android:padding="14dp"
+                android:background="@drawable/rounded_input"/>
 
-            <ScrollView
+            <!-- Add Image Row -->
+            <LinearLayout
+                android:id="@+id/AddPostImageButton"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="18dp"
+                android:padding="12dp"
+                android:background="@drawable/white_card_glass"
+                android:elevation="4dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@android:drawable/ic_menu_camera"
+                    android:background="@drawable/round_icon_purple"
+                    android:padding="10dp"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_below="@+id/title">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Post Content"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"/>
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:hint="Post Content....."
-                        android:gravity="top"
-                        android:background="@drawable/edit_text"
-                        android:id="@+id/AddPostEditText"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_margin="10dp"
-                        android:id="@+id/AddPostImageButton">
-                        <ImageView
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:maxHeight="62dp"
-                            android:maxWidth="62dp"
-                            android:src="@android:drawable/ic_menu_camera"
-                            android:id="@+id/imageView"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Add Image"
-                            android:textSize="18dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="10dp"
-                            android:id="@+id/textView"/>
-                    </LinearLayout>
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Post"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:id="@+id/btnPost"/>
+                    android:text=" Add Image"
+                    android:textSize="18sp"
+                    android:layout_marginStart="12dp"/>
+            </LinearLayout>
 
-
-                </LinearLayout>
-            </ScrollView>
+            <!-- Post Button -->
+            <Button
+                android:id="@+id/btnPost"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Post"
+                android:textSize="20sp"
+                android:layout_marginTop="24dp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/deep_plum"
+                android:elevation="10dp"/>
         </LinearLayout>
-    </RelativeLayout>
-
+    </ScrollView>
 
 </RelativeLayout>

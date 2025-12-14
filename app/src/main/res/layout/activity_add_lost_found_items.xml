@@ -5,197 +5,210 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradient_bg"
     tools:context=".LostANDFound.add_lost_found_items">
 
-    <RelativeLayout
+    <!-- HEADER (Reduced Size) -->
+    <LinearLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:background="@drawable/header_glass">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="10dp">
+            android:text="Lost &amp; Found"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:padding="4dp"
+            android:elevation="5dp"/>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lost &amp; Found"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="@color/black"
-                android:layout_marginTop="8dp"/>
-        </LinearLayout>
-
-    </RelativeLayout>
-
+    <!-- Scroll Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title">
+        android:layout_below="@id/title"
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:background="@drawable/white_card_glass"
+            android:padding="20dp"
+            android:elevation="8dp">
 
+            <!-- Toggle Buttons -->
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/toggleGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 app:singleSelection="true"
                 app:checkedButton="@id/btnLost">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnLost"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Lost"
-                    app:cornerRadius="12dp"/>
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/deep_plum"
+                    app:cornerRadius="20dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnFound"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Found"
-                    app:cornerRadius="12dp"/>
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/light_purple"
+                    app:cornerRadius="20dp"/>
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
+            <!-- Description -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/editDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_text"
-                android:hint="Describe the item…"
-                android:minLines="3"
+                android:layout_height="140dp"
+                android:background="@drawable/rounded_input"
+                android:hint="Describe the item..."
                 android:gravity="top"
-                android:padding="10dp"/>
+                android:padding="14dp"/>
 
+            <!-- Category -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Category"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="20dp"/>
 
             <Spinner
                 android:id="@+id/AddPostSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:spinnerMode="dropdown"
-                android:background="@android:color/transparent"/>
+                android:background="@drawable/rounded_input"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"/>
 
+            <!-- Date & Time -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date &amp; Time"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="20dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                >
+                android:layout_marginTop="10dp">
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text"
+                    android:id="@+id/editDate"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
                     android:hint="DD-MM-YYYY"
-                    android:textAlignment="center"
-                    android:id="@id/editDate"/>
+                    android:gravity="center"
+                    android:background="@drawable/rounded_input"/>
+
                 <View
-                    android:layout_width="18dp"
+                    android:layout_width="14dp"
                     android:layout_height="0dp"/>
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text"
+                    android:id="@+id/editTime"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
                     android:hint="hh:mm"
-                    android:textAlignment="center"
-                    android:id="@id/editTime"/>
+                    android:gravity="center"
+                    android:background="@drawable/rounded_input"/>
             </LinearLayout>
+
+            <!-- Contact Info -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Contact Info"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="20dp"/>
 
             <EditText
                 android:id="@+id/editContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edit_text"
+                android:background="@drawable/rounded_input"
                 android:hint="Phone number or email"
-                android:inputType="phone"
-                android:padding="10dp"/>
+                android:padding="12dp"
+                android:inputType="phone"/>
 
+            <!-- Image Picker -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/AddPostImageBtn"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="15dp"
-                android:id="@+id/AddPostImageBtn"
-                >
+                android:gravity="center_vertical"
+                android:padding="12dp"
+                android:background="@drawable/white_card_glass"
+                android:elevation="4dp"
+                android:layout_marginTop="20dp">
+
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:maxHeight="48dp"
-                    android:maxWidth="48dp"
+                    android:id="@+id/AddPostImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@android:drawable/ic_menu_camera"
-                    android:scaleType="centerCrop"
-                    android:background="@null"
-                    android:id="@+id/AddPostImageView"/>
+                    android:background="@drawable/round_icon_purple"
+                    android:padding="10dp"/>
+
                 <TextView
+                    android:id="@+id/imgName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLength="15"
+                    android:text=" Add Image"
                     android:textSize="18sp"
-                    android:text="  Add Image"
-                    android:layout_gravity="center"
-
-                    android:id="@+id/imgName"/>
+                    android:layout_marginStart="12dp"/>
             </LinearLayout>
 
-
+            <!-- Button -->
             <Button
                 android:id="@+id/btnPost"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:text="Post"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
-
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/deep_plum"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="30dp"/>
         </LinearLayout>
-
     </ScrollView>
 
 </RelativeLayout>
