@@ -1,26 +1,29 @@
 package com.example.myapplication.startup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.myapplication.R;
+import com.example.myapplication.authActivity.Login;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.ViewHolder> {
 
     Context context;
 
-    int[] images = {
-            R.drawable.community,
-            R.drawable.lost_and_found,
-            R.drawable.board,
-            R.drawable.studym
+    int[] animations = {
+            R.raw.community,
+            R.raw.lostandfound,
+            R.raw.digitalboard,
+            R.raw.studym
     };
 
     String[] titles = {
@@ -52,27 +55,41 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.imgFeature.setImageResource(images[position]);
+        holder.animationView.setAnimation(animations[position]);
+        holder.animationView.playAnimation();
+
         holder.txtTitle.setText(titles[position]);
         holder.txtDesc.setText(desc[position]);
+
+        holder.btnNext.setOnClickListener(v -> {
+            int next = holder.getAdapterPosition() + 1;
+
+            if (next < titles.length) {
+                ((OnboardingActivity) context).viewPager.setCurrentItem(next);
+            } else {
+                context.startActivity(new Intent(context, Login.class));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return titles.length; // 4 onboarding pages
+        return titles.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgFeature;
+        LottieAnimationView animationView;
         TextView txtTitle, txtDesc;
+        Button btnNext;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgFeature = itemView.findViewById(R.id.imgFeature);
+            animationView = itemView.findViewById(R.id.animationView);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtDesc = itemView.findViewById(R.id.txtDesc);
+            btnNext = itemView.findViewById(R.id.btnNext);
         }
     }
 }
