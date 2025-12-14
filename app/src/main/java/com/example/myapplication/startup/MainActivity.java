@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.startup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,11 +6,9 @@ import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.Home.Home;
+import com.example.myapplication.R;
 import com.example.myapplication.authActivity.Login;
 import com.example.myapplication.authActivity.signup;
 import com.example.myapplication.testDB.DB_test;
