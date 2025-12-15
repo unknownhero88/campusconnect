@@ -1,57 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp">
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="paragrph...."
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:id="@+id/rv_desc"
-        />
+        android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="5dp"
-        android:scaleType="centerCrop"
-        android:id="@+id/rv_img"
-        />
-        <RelativeLayout
+        <!-- Post Text -->
+        <TextView
+            android:id="@+id/rv_desc"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:text="This is a community post description..."
+            android:textSize="15sp"
+            android:textColor="#1C1C1C"
+            android:lineSpacingExtra="2dp"/>
+
+        <!-- Image (optional) -->
+        <ImageView
+            android:id="@+id/rv_images"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Date -->
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Date"
-                android:textColor="@color/black"
-                android:textSize="15sp"
                 android:id="@+id/rv_date"
-                android:layout_alignParentStart="true"/>
-            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="rating"
-                android:textColor="@color/black"
-                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:text="12 Sep 2025"
+                android:textSize="13sp"
+                android:textColor="#777777"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <!-- Rating / Likes -->
+            <TextView
                 android:id="@+id/rv_rating"
-                android:layout_alignParentEnd="true"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⭐ 4.5"
+                android:textSize="13sp"
+                android:textColor="@color/deep_plum"/>
+        </LinearLayout>
 
-
-        </RelativeLayout>
     </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>

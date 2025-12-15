@@ -1,47 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/frame_container"
-    tools:context=".Community.CommunityFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".Community.CommunityFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <!-- Header (Same as Lost & Found) -->
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center|top">
+            android:background="@drawable/rounded_white_card"
+            android:elevation="4dp">
 
+            <!-- Title -->
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Community"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#2C2C54"/>
+
+            <!-- Subtitle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share • Ask • Connect"
+                android:textSize="13sp"
+                android:textColor="#777777"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Segmented Control (Like Lost & Found Toggle) -->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/communityToggleGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="Community"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="14dp"
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="@color/black" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAll"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="All"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/deep_plum"
+                    app:cornerRadius="16dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMyPosts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="My Posts"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/Pale_Purple"
+                    app:cornerRadius="16dp"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
         </LinearLayout>
 
+        <!-- Community Feed -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_community"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/linearLayout"
-            android:padding="10dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

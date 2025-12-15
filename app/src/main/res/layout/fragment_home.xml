@@ -1,16 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/frame_container"
     android:background="@color/white"
     tools:context=".Home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Welcome Message -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👋 Welcome to CampusConnect"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stay updated with notices, study material and campus community"
+                android:textSize="14sp"
+                android:textColor="#777777"
+                android:layout_marginTop="6dp"/>
+
+            <!-- Divider Space -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <!-- ===== Latest Notices ===== -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📢 Latest Notices"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="8dp"/>
+
+            <!-- ===== Study Material ===== -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📚 Study Material"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_study"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="8dp"/>
+
+            <!-- ===== Community Posts ===== -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💬 Recent Community Posts"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_community"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="8dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>

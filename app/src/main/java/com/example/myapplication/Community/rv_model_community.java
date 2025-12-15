@@ -11,6 +11,11 @@ public class rv_model_community {
         this.rating = rating;
     }
 
+    public rv_model_community(String desc, String date) {
+        this.desc = desc;
+        this.date = date;
+    }
+
     public String getDesc() {
         return desc;
     }

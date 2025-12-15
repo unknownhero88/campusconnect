@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:id="@+id/frame_container"
     tools:context=".DigitalNoticeBoard.NoticeFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <!-- Header (Same Style as Other Screens) -->
         <LinearLayout
-            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center|top"
-            >
+            android:elevation="2dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
                 android:text="Digital Notice Board"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1.5dp"
-                android:background="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Official announcements &amp; updates"
+                android:textSize="13sp"
+                android:textColor="#777777"
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
-        <LinearLayout
+        <!-- Notice List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/linearLayout"
-            android:layout_below="@+id/linearLayout"
-            android:layout_marginBottom="112dp"
-            android:gravity="center|top"
-            android:orientation="vertical">
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            />
 
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

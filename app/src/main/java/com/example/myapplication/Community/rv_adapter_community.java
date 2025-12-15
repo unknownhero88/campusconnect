@@ -33,23 +33,28 @@ public class rv_adapter_community extends RecyclerView.Adapter<rv_adapter_commun
     }
 
     @Override
-    public void onBindViewHolder(@NonNull rv_adapter_community.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         rv_model_community model = list.get(position);
+
         holder.desc.setText(model.getDesc());
         holder.date.setText(model.getDate());
         holder.rating.setText(String.valueOf(model.getRating()));
-        if(model.getImg()!=null)
-        {
-        Glide.with(holder.itemView.getContext())
-                .load(model.getImg())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_launcher_foreground);
-        }
-        else
-        {
-            holder.img.setImageResource(R.drawable.ic_launcher_foreground);
+
+        // ✅ HANDLE IMAGE SAFELY
+        if (model.getImg() != null && !model.getImg().isEmpty()) {
+            holder.img.setVisibility(View.VISIBLE);
+
+            Glide.with(holder.itemView.getContext())
+                    .load(model.getImg())
+                    .placeholder(R.drawable.ic_launcher_foreground)
+                    .error(R.drawable.ic_launcher_foreground)
+                    .into(holder.img);
+        } else {
+            // ❌ NO IMAGE → HIDE IMAGE VIEW COMPLETELY
+            holder.img.setVisibility(View.GONE);
         }
     }
+
 
     @Override
     public int getItemCount() {

@@ -1,4 +1,4 @@
-package com.example.myapplication.DigitalNoticeBoard;
+package com.example.myapplication.LostANDFound;
 
 import android.os.Bundle;
 

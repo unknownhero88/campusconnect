@@ -34,7 +34,7 @@
         <activity android:name=".LostANDFound.add_lost_found_items" android:exported="false" />
         <activity android:name=".Community.addPost_community" android:exported="false" />
         <activity android:name=".Community.full_post_community" android:exported="false" />
-        <activity android:name=".DigitalNoticeBoard.details_lost_found" android:exported="false" />
+        <activity android:name=".LostANDFound.details_lost_found" android:exported="false" />
         <activity android:name=".Home.Home" android:exported="false" />
         <activity android:name=".startup.OnboardingActivity" android:exported="false" />
 
