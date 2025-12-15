@@ -1,11 +1,11 @@
 package com.example.myapplication.LostANDFound;
 
 
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -26,12 +25,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.R;
 import com.example.myapplication.authActivity.Login;
 import com.example.myapplication.authActivity.SessionManager;
 import com.example.myapplication.supabaseSetup.ApiClient;
 import com.example.myapplication.supabaseSetup.storageClient;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -45,6 +46,7 @@ import retrofit2.Response;
 public class add_lost_found_items extends AppCompatActivity {
 
     MaterialButtonToggleGroup toggleGroup;
+    MaterialButton btnLost, btnFound;
     EditText editDescription, editContact;
     TextView editDate, editTime,imgName;
     Spinner AddPostSpinner;
@@ -73,6 +75,8 @@ public class add_lost_found_items extends AppCompatActivity {
         setContentView(R.layout.activity_add_lost_found_items);
 
         toggleGroup = findViewById(R.id.toggleGroup);
+        btnLost = findViewById(R.id.btnLost);
+        btnFound = findViewById(R.id.btnFound);
         editDescription = findViewById(R.id.editDescription);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
@@ -91,16 +95,29 @@ public class add_lost_found_items extends AppCompatActivity {
 
         final Character[] type = {null};
         final String[] image = {""};
+
+        ColorStateList Selected = ContextCompat.getColorStateList(this, R.color.deep_plum);
+        ColorStateList unSelected = ContextCompat.getColorStateList(this, R.color.Pale_Purple);
+
         toggleGroup.setSingleSelection(true);
+        btnLost.setBackgroundTintList(Selected);
+        btnFound.setBackgroundTintList(unSelected);
+
         toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if(!isChecked) return;
+
             if (isChecked) {
                 if (checkedId == R.id.btnLost) {
                     type[0] = 'L';
+                    btnLost.setBackgroundTintList(Selected);
+                    btnFound.setBackgroundTintList(unSelected);
 
                 }
                 else if (checkedId == R.id.btnFound)
                 {
                     type[0] = 'F';
+                    btnLost.setBackgroundTintList(unSelected);
+                    btnFound.setBackgroundTintList(Selected);
                 }
             }
         });
