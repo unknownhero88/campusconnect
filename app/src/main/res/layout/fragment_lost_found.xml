@@ -1,77 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LostANDFound.LostFoundFragment"
     android:background="@color/white"
-    android:id="@+id/frame_container">
+    tools:context=".LostANDFound.LostFoundFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-
+        <!-- Top App Bar -->
         <LinearLayout
-            android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center">
+            android:background="@color/white"
+            android:elevation="2dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
                 android:text="Lost &amp; Found"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1C"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Help items find their way back"
+                android:textSize="13sp"
+                android:textColor="#777777"
+                android:layout_marginTop="4dp"/>
 
+            <!-- Segmented Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="7dp">
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/segment_bg"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/lost_items"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lost Items" />
+                <TextView
+                    android:id="@+id/btnLost"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Lost"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/segment_selected"/>
 
-                <View
-                    android:layout_width="25dp"
-                    android:layout_height="25dp" />
-
-                <Button
-                    android:id="@+id/found_items"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Found Items" />
+                <TextView
+                    android:id="@+id/btnFound"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Found"
+                    android:textStyle="bold"
+                    android:textColor="#555555"/>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black" />
         </LinearLayout>
 
+        <!-- RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_lost_found"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/headerLayout"
-            android:padding="10dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </FrameLayout>

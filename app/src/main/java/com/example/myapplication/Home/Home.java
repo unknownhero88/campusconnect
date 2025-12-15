@@ -1,11 +1,9 @@
 package com.example.myapplication.Home;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,7 +50,7 @@ public class Home extends AppCompatActivity {
                 fab.setVisibility(View.GONE);
                 } else if (itemId == R.id.nav_study) {
                 fragment = new StudyFragment();
-                fab.setVisibility(View.VISIBLE);
+                fab.setVisibility(View.GONE);
                 } else if (itemId == R.id.nav_community) {
                 fragment = new CommunityFragment();
                 fab.setVisibility(View.VISIBLE);
